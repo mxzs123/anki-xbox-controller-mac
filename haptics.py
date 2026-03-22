@@ -139,5 +139,59 @@ class HapticPlayer:
         except Exception as e:
             logger.debug('Haptic play error: %s', e)
 
+    def play_pattern(self, events_data):
+        if not self.enabled or not self._supported or not self._engine or not _ch_available:
+            return
+
+        try:
+            events = []
+            for ev in events_data:
+                intensity = min(1.0, ev.get('intensity', 0.5) * self.intensity_scale)
+                sharpness = ev.get('sharpness', 0.3)
+                duration = ev.get('duration', 0.1)
+                rel_time = ev.get('time', 0.0)
+                ev_type = ev.get('type', 'transient')
+
+                params = [
+                    CHHapticEventParameter.alloc().initWithParameterID_value_(
+                        CHHapticEventParameterIDHapticIntensity, intensity
+                    ),
+                    CHHapticEventParameter.alloc().initWithParameterID_value_(
+                        CHHapticEventParameterIDHapticSharpness, sharpness
+                    ),
+                ]
+
+                if ev_type == 'continuous':
+                    haptic_type = CHHapticEventTypeHapticContinuous
+                else:
+                    haptic_type = CHHapticEventTypeHapticTransient
+                    duration = 0
+
+                event = CHHapticEvent.alloc().initWithEventType_parameters_relativeTime_duration_(
+                    haptic_type, params, rel_time, duration
+                )
+                events.append(event)
+
+            result = CHHapticPattern.alloc().initWithEvents_parameters_error_(
+                events, [], None
+            )
+            pattern = result[0] if isinstance(result, tuple) else result
+            if pattern is None:
+                logger.debug('Failed to create haptic pattern: %s', result)
+                return
+
+            result = self._engine.createPlayerWithPattern_error_(pattern, None)
+            player = result[0] if isinstance(result, tuple) else result
+            if player is None:
+                logger.debug('Failed to create haptic player: %s', result)
+                return
+
+            result = player.startAtTime_error_(0, None)
+            success = result[0] if isinstance(result, tuple) else result
+            if not success:
+                logger.debug('Haptic pattern play failed: %s', result)
+        except Exception as e:
+            logger.debug('Haptic pattern play error: %s', e)
+
     def play_test(self):
-        self.play({'type': 'transient', 'intensity': 0.8, 'sharpness': 0.5})
+        self.play({'type': 'continuous', 'intensity': 1.0, 'sharpness': 0.5, 'duration': 0.3})

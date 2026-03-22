@@ -53,6 +53,7 @@ class ConfigDialog(QDialog):
         tabs.addTab(self._build_mapping_tab(), '按键映射')
         tabs.addTab(self._build_sound_tab(), '音效设置')
         tabs.addTab(self._build_haptics_tab(), '震动设置')
+        tabs.addTab(self._build_combo_tab(), '连击特效')
 
         layout.addWidget(tabs)
 
@@ -167,6 +168,35 @@ class ConfigDialog(QDialog):
         layout.addStretch()
         return widget
 
+    def _build_combo_tab(self):
+        widget = QWidget()
+        layout = QVBoxLayout(widget)
+
+        combo_config = self._config.get('combo', {})
+
+        self._combo_enabled_cb = QCheckBox('启用连击系统')
+        self._combo_enabled_cb.setChecked(combo_config.get('enabled', True))
+        layout.addWidget(self._combo_enabled_cb)
+
+        self._combo_visual_cb = QCheckBox('启用视觉特效 (连击数字、屏幕闪光)')
+        self._combo_visual_cb.setChecked(combo_config.get('visual_effects', True))
+        layout.addWidget(self._combo_visual_cb)
+
+        info = QLabel(
+            '连续答对 (Hard/Good/Easy) 累积连击\n'
+            '答错 (Again) 断连击 + 屏幕红闪\n\n'
+            '连击阶段:\n'
+            '  5x+  ON FIRE     双脉冲震动\n'
+            '  10x+ UNSTOPPABLE 三连震动\n'
+            '  20x+ GODLIKE     渐强波浪震动\n\n'
+            '每复习 25 张卡片触发里程碑庆祝'
+        )
+        info.setStyleSheet('color: #888; padding: 12px;')
+        layout.addWidget(info)
+
+        layout.addStretch()
+        return widget
+
     def _test_haptic(self):
         if not self._haptic_player or not self._haptic_player.is_supported:
             return
@@ -213,6 +243,11 @@ class ConfigDialog(QDialog):
         if 'profiles' not in haptics_config:
             haptics_config['profiles'] = dict(DEFAULT_PROFILES)
         self._config['haptics'] = haptics_config
+
+        combo_config = self._config.get('combo', {})
+        combo_config['enabled'] = self._combo_enabled_cb.isChecked()
+        combo_config['visual_effects'] = self._combo_visual_cb.isChecked()
+        self._config['combo'] = combo_config
 
         mw.addonManager.writeConfig(__name__.split('.')[0], self._config)
         logger.info('Xbox controller config saved')

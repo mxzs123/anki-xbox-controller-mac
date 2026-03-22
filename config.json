@@ -32,5 +32,11 @@
       "undo": {"type": "continuous", "intensity": 0.8, "sharpness": 0.6, "duration": 0.3}
     }
   },
+  "combo": {
+    "enabled": true,
+    "visual_effects": true,
+    "milestone_interval": 25,
+    "streak_thresholds": [5, 10, 20]
+  },
   "poll_interval_ms": 16
 }
