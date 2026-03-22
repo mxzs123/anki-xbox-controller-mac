@@ -6,9 +6,11 @@ from aqt.qt import (
     QPropertyAnimation,
     QEasingCurve,
     QGraphicsOpacityEffect,
+    QGraphicsDropShadowEffect,
     QFont,
     Qt,
     QPoint,
+    QColor,
     QSequentialAnimationGroup,
     QPauseAnimation,
     QParallelAnimationGroup,
@@ -32,13 +34,23 @@ TIER_NAMES = {
 
 
 class VisualEffects:
-    def __init__(self, parent):
-        self._parent = parent
+    def __init__(self, mw):
+        self._mw = mw
         self._combo_label = None
         self._flash_label = None
         self._center_label = None
+        self._combo_hide_timer = None
         self._active_anims = []
         self.enabled = True
+
+    @property
+    def _parent(self):
+        try:
+            if self._mw and hasattr(self._mw, 'web') and self._mw.web:
+                return self._mw.web
+        except Exception:
+            pass
+        return self._mw
 
     def show_combo(self, streak, tier):
         if not self.enabled or not self._parent:
@@ -46,7 +58,6 @@ class VisualEffects:
         self._cleanup_label(self._combo_label)
 
         color = TIER_COLORS.get(tier, '#FFFFFF')
-        glow = f'2px 2px 8px {color}' if tier >= 1 else '2px 2px 6px rgba(0,0,0,0.7)'
         size = min(28 + tier * 6, 46)
 
         label = QLabel(self._parent)
@@ -57,13 +68,19 @@ class VisualEffects:
                 font-size: {size}px;
                 font-weight: 900;
                 font-family: "SF Pro Display", "Helvetica Neue", "Arial Black", sans-serif;
-                background: transparent;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 8px;
                 padding: 8px 16px;
-                text-shadow: {glow};
             }}
         ''')
         label.setText(f'{streak}x')
         label.adjustSize()
+
+        shadow = QGraphicsDropShadowEffect(label)
+        shadow.setBlurRadius(20)
+        shadow.setOffset(0, 0)
+        shadow.setColor(QColor(color))
+        label.setGraphicsEffect(shadow)
 
         pw = self._parent.width()
         label.move(pw - label.width() - 20, 20)
@@ -72,6 +89,13 @@ class VisualEffects:
         self._combo_label = label
 
         self._animate_pop(label)
+
+        if self._combo_hide_timer:
+            self._combo_hide_timer.stop()
+        self._combo_hide_timer = QTimer()
+        self._combo_hide_timer.setSingleShot(True)
+        self._combo_hide_timer.timeout.connect(lambda: self._cleanup_label(self._combo_label))
+        self._combo_hide_timer.start(3000)
 
     def show_tier_up(self, tier, streak):
         if not self.enabled or not self._parent:
@@ -106,7 +130,11 @@ class VisualEffects:
     def _show_center_text(self, text, color, size=40, duration=1800):
         self._cleanup_label(self._center_label)
 
-        label = QLabel(self._parent)
+        parent = self._parent
+        if not parent:
+            return
+
+        label = QLabel(parent)
         label.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
         label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         label.setStyleSheet(f'''
@@ -115,14 +143,15 @@ class VisualEffects:
                 font-size: {size}px;
                 font-weight: 900;
                 font-family: "SF Pro Display", "Helvetica Neue", "Arial Black", sans-serif;
-                background: transparent;
+                background: rgba(0, 0, 0, 0.6);
+                border-radius: 12px;
                 padding: 16px 32px;
             }}
         ''')
         label.setText(text)
         label.adjustSize()
 
-        pw, ph = self._parent.width(), self._parent.height()
+        pw, ph = parent.width(), parent.height()
         label.move((pw - label.width()) // 2, (ph - label.height()) // 2 - 40)
         label.show()
         label.raise_()
