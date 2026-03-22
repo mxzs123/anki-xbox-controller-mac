@@ -37,7 +37,7 @@
 **按键映射：**
 
 <p align="center">
-  <img src="assets/button-mapping.svg" width="500" alt="Button Mapping"/>
+  <img src="assets/controller.jpg" width="420" alt="Xbox Controller"/>
 </p>
 
 | 手柄按键 | 动作 | 说明 |
@@ -171,7 +171,7 @@ This is backed by research:
 **Button mapping:**
 
 <p align="center">
-  <img src="assets/button-mapping.svg" width="500" alt="Button Mapping"/>
+  <img src="assets/controller.jpg" width="420" alt="Xbox Controller"/>
 </p>
 
 | Button | Action | Description |
