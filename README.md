@@ -136,7 +136,7 @@ git clone https://github.com/mxzs123/anki-xbox-controller-mac.git xbox_controlle
 
 ### 参考文献
 
-1. Effectiveness of a gamified educational application for ADHD — *Frontiers in Education*, 2025 [[链接]](https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.16)
+1. Effectiveness of Serious Games as Digital Therapeutics for Enhancing the Abilities of Children With ADHD — *JMIR Serious Games*, 2025 [[链接]](https://games.jmir.org/2025/1/e60937)
 2. A serious-gamification blueprint towards a normalized attention — *Brain Informatics*, 2021 [[链接]](https://pmc.ncbi.nlm.nih.gov/articles/PMC8050194/)
 3. Touch to Learn: A Review of Haptic Technology's Impact on Skill Acquisition — *Advanced Intelligent Systems*, 2024 [[链接]](https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.202300731)
 
@@ -270,7 +270,7 @@ Restart Anki. Dependencies install automatically.
 
 ### References
 
-1. Effectiveness of a gamified educational application for ADHD — *Frontiers in Education*, 2025 [[link]](https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.16)
+1. Effectiveness of Serious Games as Digital Therapeutics for Enhancing the Abilities of Children With ADHD — *JMIR Serious Games*, 2025 [[link]](https://games.jmir.org/2025/1/e60937)
 2. A serious-gamification blueprint towards a normalized attention — *Brain Informatics*, 2021 [[link]](https://pmc.ncbi.nlm.nih.gov/articles/PMC8050194/)
 3. Touch to Learn: A Review of Haptic Technology's Impact on Skill Acquisition — *Advanced Intelligent Systems*, 2024 [[link]](https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.202300731)
 
