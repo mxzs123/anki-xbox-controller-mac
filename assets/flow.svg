@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="600" y2="120">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="120" rx="16" fill="url(#bg3)"/>
+  <!-- Step 1: Card Front -->
+  <rect x="20" y="25" width="120" height="70" rx="10" fill="#ffffff0a" stroke="#ffffff33" stroke-width="1.5"/>
+  <text x="80" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">📄 Card Front</text>
+  <text x="80" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff88">Question</text>
+  <!-- Arrow 1 -->
+  <line x1="145" y1="60" x2="175" y2="60" stroke="#ffffff55" stroke-width="1.5"/>
+  <polygon points="175,55 185,60 175,65" fill="#ffffff55"/>
+  <text x="165" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#7fba00">A/B/X/Y</text>
+  <!-- Step 2: Card Back -->
+  <rect x="190" y="25" width="120" height="70" rx="10" fill="#ffffff0a" stroke="#7fba0066" stroke-width="1.5"/>
+  <text x="250" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">🔄 Flip</text>
+  <text x="250" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff88">Show Answer</text>
+  <!-- Arrow 2 -->
+  <line x1="315" y1="60" x2="345" y2="60" stroke="#ffffff55" stroke-width="1.5"/>
+  <polygon points="345,55 355,60 345,65" fill="#ffffff55"/>
+  <text x="335" y="48" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#0e6eb8">A/B/X/Y</text>
+  <!-- Step 3: Answer -->
+  <rect x="360" y="25" width="120" height="70" rx="10" fill="#ffffff0a" stroke="#0e6eb866" stroke-width="1.5"/>
+  <text x="420" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#fff">✅ Answer</text>
+  <text x="420" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#ffffff88">Submit Grade</text>
+  <!-- Arrow 3 -->
+  <line x1="485" y1="60" x2="515" y2="60" stroke="#ffffff55" stroke-width="1.5"/>
+  <polygon points="515,55 525,60 515,65" fill="#ffffff55"/>
+  <!-- Step 4: Next -->
+  <rect x="530" y="25" width="55" height="70" rx="10" fill="#ffffff0a" stroke="#FFD70066" stroke-width="1.5"/>
+  <text x="557" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="#FFD700">+1</text>
+  <text x="557" y="75" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#FFD70088">Combo</text>
+</svg>

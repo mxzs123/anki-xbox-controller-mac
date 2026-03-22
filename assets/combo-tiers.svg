@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="600" y2="200">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF4500"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF2D2D"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </linearGradient>
+    <filter id="glow1">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="600" height="200" rx="16" fill="url(#bg2)"/>
+  <!-- Progress bar bg -->
+  <rect x="40" y="90" width="520" height="16" rx="8" fill="#ffffff0d"/>
+  <!-- Tier 1 segment -->
+  <rect x="40" y="90" width="160" height="16" rx="8" fill="url(#gold)" opacity="0.8"/>
+  <!-- Tier 2 segment -->
+  <rect x="200" y="90" width="170" height="16" rx="8" fill="url(#orange)" opacity="0.8"/>
+  <!-- Tier 3 segment -->
+  <rect x="370" y="90" width="190" height="16" rx="8" fill="url(#red)" opacity="0.8"/>
+  <!-- Tier 1 marker -->
+  <circle cx="200" cy="98" r="6" fill="#1a1a2e" stroke="#FFD700" stroke-width="2"/>
+  <!-- Tier 2 marker -->
+  <circle cx="370" cy="98" r="6" fill="#1a1a2e" stroke="#FF8C00" stroke-width="2"/>
+  <!-- Tier 3 marker -->
+  <circle cx="560" cy="98" r="6" fill="#1a1a2e" stroke="#FF2D2D" stroke-width="2"/>
+  <!-- Tier 1 label -->
+  <text x="120" y="72" text-anchor="middle" font-family="'SF Pro Display',Arial,sans-serif" font-size="22" font-weight="900" fill="#FFD700" filter="url(#glow1)">🔥 ON FIRE</text>
+  <text x="120" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#FFD700" opacity="0.7">5x streak</text>
+  <!-- Tier 2 label -->
+  <text x="300" y="72" text-anchor="middle" font-family="'SF Pro Display',Arial,sans-serif" font-size="22" font-weight="900" fill="#FF8C00" filter="url(#glow2)">⚡ UNSTOPPABLE</text>
+  <text x="300" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#FF8C00" opacity="0.7">10x streak</text>
+  <!-- Tier 3 label -->
+  <text x="480" y="72" text-anchor="middle" font-family="'SF Pro Display',Arial,sans-serif" font-size="22" font-weight="900" fill="#FF2D2D" filter="url(#glow3)">💀 GODLIKE</text>
+  <text x="480" y="138" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#FF2D2D" opacity="0.7">20x streak</text>
+  <!-- Bottom description -->
+  <text x="300" y="175" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#ffffff66">Each tier unlocks stronger haptic patterns and visual effects</text>
+</svg>
