@@ -4,6 +4,7 @@ logger = logging.getLogger(__name__)
 
 COMBO_ACTIONS = {'answer_2', 'answer_3', 'answer_4'}
 BREAK_ACTIONS = {'answer_1'}
+UNDO_ACTIONS = {'undo'}
 
 
 class ComboTracker:
@@ -33,6 +34,13 @@ class ComboTracker:
             if old_streak >= self.streak_thresholds[0]:
                 return {'event': 'combo_break', 'lost_streak': old_streak}
             return {'event': 'fail'}
+
+        if action_name in UNDO_ACTIONS:
+            if self.streak > 0:
+                self.streak -= 1
+            if self.total_reviewed > 0:
+                self.total_reviewed -= 1
+            return {'event': 'undo', 'streak': self.streak}
 
         return None
 
