@@ -1,0 +1,36 @@
+{
+  "button_mapping": {
+    "A": "answer_1",
+    "B": "answer_2",
+    "X": "answer_3",
+    "Y": "answer_4",
+    "left_trigger": "replay_audio",
+    "right_trigger": "undo"
+  },
+  "sounds": {
+    "enabled": true,
+    "volume": 0.7,
+    "profiles": {
+      "answer_1": "sounds/wrong.wav",
+      "answer_2": "sounds/click.wav",
+      "answer_3": "sounds/correct.wav",
+      "answer_4": "sounds/click.wav",
+      "replay_audio": "sounds/trigger.wav",
+      "undo": "sounds/trigger.wav"
+    }
+  },
+  "haptics": {
+    "enabled": true,
+    "intensity_scale": 1.0,
+    "profiles": {
+      "answer_1": {"type": "continuous", "intensity": 1.0, "sharpness": 0.8, "duration": 0.5},
+      "answer_2": {"type": "continuous", "intensity": 0.9, "sharpness": 0.6, "duration": 0.3},
+      "answer_3": {"type": "continuous", "intensity": 0.8, "sharpness": 0.5, "duration": 0.25},
+      "answer_4": {"type": "continuous", "intensity": 0.7, "sharpness": 0.4, "duration": 0.2},
+      "show_answer": {"type": "continuous", "intensity": 1.0, "sharpness": 0.7, "duration": 0.35},
+      "replay_audio": {"type": "continuous", "intensity": 0.6, "sharpness": 0.5, "duration": 0.2},
+      "undo": {"type": "continuous", "intensity": 0.8, "sharpness": 0.6, "duration": 0.3}
+    }
+  },
+  "poll_interval_ms": 16
+}
